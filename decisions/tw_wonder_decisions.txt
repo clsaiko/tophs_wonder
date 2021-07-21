@@ -38,7 +38,7 @@ title_decisions = {
         #when is this enabled
         allow = {   
             FROM = {
-                prestige = 300              #decision taker has enough prestige
+                prestige = 500              #decision taker has enough prestige
                 completely_controls = ROOT  #decision taker completely controls the province
             }
 
@@ -60,7 +60,7 @@ title_decisions = {
 				}
 			}
             # cost
-            FROM = { prestige = -250 }
+            FROM = { prestige = -500 }
         }
         revoke_allowed = { always = no }
         ai_will_do = { factor = 0 }   
