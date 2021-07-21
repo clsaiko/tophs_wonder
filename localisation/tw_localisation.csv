@@ -1,0 +1,17 @@
+#################################
+#	File:   tw_localisation.csv
+#	Author: Chris Saiko
+#	Desc:   Toph's Wonder Localisation File
+#           Windows 1252 encoding
+#################################
+
+#CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+#CODE;ENGLISH;;;;;;;;;;;;;x
+
+#DECISIONS
+#Wonder Title Decisions
+tl_destroy_wonder;Destroy Wonder;;;;;;;;;;;;;x
+tl_destroy_wonder_desc;Destroy this Wonder, clearing the way for new development.;;;;;;;;;;;;;x
+
+tl_add_wonder_slot;Add Wonder Upgrade Slot;;;;;;;;;;;;;x
+tl_add_wonder_slot_desc;Add an upgrade slot to this wonder, allowing an additional upgrade to be built.;;;;;;;;;;;;;x

@@ -1,0 +1,137 @@
+#################################
+#	File:	tw_wonder_decisions.txt
+#	Author:	Chris Saiko
+# 	Desc:	Toph's Wonder Decisions
+#
+#           tl_destroy_wonder -     destroy wonder in a province
+#           tl_add_wonder_slot -    add an upgrade slot to a wonder
+#
+#           FROM is the decision taker
+#           ROOT is the targeted title
+#################################
+
+title_decisions = {
+
+    # Destroy wonder in the province
+    tl_destroy_wonder = {
+        only_playable = yes
+        filter = realm_owned
+        ai_target_filter = realm_owned
+        ai_check_interval = 120
+
+        from_potential = { ai = no }
+
+        #when does this option show up in the list
+        potential = {  
+            #decision taker is independent
+            FROM = {
+                independent = yes
+            }
+            #province has a wonder     
+            ROOT = {
+				location = {
+					has_wonder = yes
+				}
+            }
+        }
+
+        #when is this enabled
+        allow = {   
+            FROM = {
+                prestige = 300              #decision taker has enough prestige
+                completely_controls = ROOT  #decision taker completely controls the province
+            }
+
+            #wonder is not at a lootable stage
+            ROOT = {
+                location = {
+                    wonder = {
+                        is_at_lootable_stage = no
+                    }
+                }
+            }
+        }
+
+        effect = {
+            # destroy wonder
+			ROOT = {
+				location = {
+					destroy_wonder = yes
+				}
+			}
+            # cost
+            FROM = { prestige = -250 }
+        }
+        revoke_allowed = { always = no }
+        ai_will_do = { factor = 0 }   
+    }#end tl_destroy_wonder
+
+    # Add Upgrade Slot to Wonder
+    tl_add_wonder_slot = {
+        only_playable = yes
+        filter = realm_owned
+        ai_target_filter = realm_owned
+        ai_check_interval = 120
+
+        from_potential = { ai = no }
+
+        #when does this option show up in the list
+        potential = {  
+            #decision taker is independent
+            FROM = {
+                independent = yes
+            }
+            #province has a wonder     
+            ROOT = {
+				location = {
+					has_wonder = yes
+				}
+            }
+        }
+
+        #when is this enabled
+        allow = {   
+            FROM = {
+                scaled_wealth = {           #decision taker has enough gold
+                    value = 0.20
+                    min = 1000
+                    max = 2000
+                }              
+                completely_controls = ROOT  #decision taker completely controls the province
+            }
+
+            #wonder reqs
+            ROOT = {
+                location = {
+                    wonder = {
+                        wonder_stage >= 4   #must be stage 4 (or above)
+                        is_active = yes     #must be active
+                    }
+                }
+            }
+        }
+
+        effect = {
+            # add wonder upgrade slot
+			ROOT = {
+				location = {
+					wonder = {
+                        add_wonder_upgrade_slots = 1
+                    }
+                }
+			}
+
+            # cost
+            FROM = {
+                scaled_wealth = {
+                    value = -0.20
+                    min = -1000
+                    max = -2000
+                }
+            }
+        }
+        revoke_allowed = { always = no }
+        ai_will_do = { factor = 0 }   
+    }#end tl_add_wonder_slot 
+
+}#end title_decisions
